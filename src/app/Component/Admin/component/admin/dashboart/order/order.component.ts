@@ -10,44 +10,43 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./order.component.scss']
 })
 export class OrderComponent implements OnInit {
-  searchModel!:SearchModel;
-   orderDetails!:Iorder
+  searchModel!: SearchModel;
+  orderDetails!: Iorder
   ModalTitle!: string;
-  order : any;
-ActivateAddandEdit:boolean=false;
-imageUrl = environment.imagesUrl + "Images/Products/";
+  order: any;
+  ActivateAddandEdit: boolean = false;
+  imageUrl = environment.imagesUrl + "Images/Products/";
 
-  constructor(private orderService:OrderService) { }
+  constructor(private orderService: OrderService) { }
 
   ngOnInit(): void {
     this.getOrders()
   }
 
-  getOrderItems(id:any)
-  {
+  getOrderItems(id: any) {
     debugger
-    this.orderService.getOrderItems(id).subscribe((res:Iorder)=>{
-      this.orderDetails=res
-    
-    })
-  
-    
-    this.ActivateAddandEdit=true;
-  this.ModalTitle="details";
-  }  
+    this.orderService.getOrderItems(id).subscribe((res: Iorder) => {
+      this.orderDetails = res
 
-  getOrders(){
-    
-debugger
+    })
+
+
+    this.ActivateAddandEdit = true;
+    this.ModalTitle = "details";
+  }
+
+  getOrders() {
+
+    debugger
     this.orderService.getOrders()
       .subscribe((response: any) => {
         this.order = response;
-      
-     });
-     
-}
-closeClick(){
-  this.ActivateAddandEdit=false;
-  
-}
+
+      });
+
+  }
+  closeClick() {
+    this.ActivateAddandEdit = false;
+
+  }
 }

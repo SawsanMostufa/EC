@@ -12,7 +12,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class BasketService {
- 
+
   // private basketSource = new BehaviorSubject<any>(null);
   // basket$ = this.basketSource.asObservable();
 
@@ -33,71 +33,43 @@ export class BasketService {
     debugger
     return this.httpClient.get(`${environment.baseUrl}Product/checkProductQtyAva?productId=` + product.id + '&qtyReq=' + qtyReq);
   }
-  
+
   cartItemNumber() {
     debugger
     if ('cart' in localStorage) {
 
       this.countCart = JSON.parse(localStorage.getItem('cart')!)
-      this.cartItem= this.countCart.items.length;
+      this.cartItem = this.countCart.items.length;
       return this.cartItem;
-      
+
     }
     return 0;
   }
 
-  // getAndSetItemFromBasket() {
-
-  //   if ('cart' in localStorage) {
-
-  //     this.cartproducts = JSON.parse(localStorage.getItem('cart')!)
-  //     let exist = this.cartproducts.find(item => item.id == this.product.id)
-  //     if (exist) {
-  //       this.index = this.cartproducts.findIndex(x => x.id === this.product.id);
-
-  //       this.cartproducts[this.index].quantity += this.quantity;
-  //       localStorage.setItem('cart', JSON.stringify(this.cartproducts))
-  //     }
-  //     else {
-  //       this.cartproducts.push(this.product)
-  //       localStorage.setItem('cart', JSON.stringify(this.cartproducts))
-  //     }
-
-  //   }
-  //   else {
-  //     this.cartproducts.push(this.product)
-  //     this.setItemInBasket();
-  //   }
-
-  // }
 
   getCurrentBasketValue() {
 
     return JSON.parse(localStorage.getItem('cart')!)
   }
 
-  setItemInBasket(basket:IBasket) {
+  setItemInBasket(basket: IBasket) {
     localStorage.setItem('cart', JSON.stringify(basket))
   }
-   mapPRoductItemToBasketItems(item: Iproduct, quantity: number): Basket {
-    // console.log(item.productSizes);
-    
+  mapPRoductItemToBasketItems(item: Iproduct, quantity: number): Basket {
+
     return {
       productId: item.id,
       productName: item.name,
       price: item.price,
-
-      value:item.value,
-      // size:
+      value: item.value,
       pictureUrl: item.pictureUrl,
       quantity,
       category: item.category
     };
 
   }
-   createBasket(): IBasket {
+  createBasket(): IBasket {
     const basket = new BasketLis();
-    //localStorage.setItem('basket_id',basket.id);
     return basket;
   }
 

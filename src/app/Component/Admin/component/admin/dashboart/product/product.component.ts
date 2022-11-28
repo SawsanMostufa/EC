@@ -17,7 +17,7 @@ import { environment } from 'src/environments/environment';
 export class ProductComponent implements OnInit {
   defImage: string = "DefualtImage.png";
 
-  @Input() ProductName:any
+  @Input() ProductName: any
   products: any
   id: number = 0;
   ModalTitle: string = "";
@@ -33,41 +33,38 @@ export class ProductComponent implements OnInit {
   imageName: string = "";
   imageAddEdit!: string;
   category: any;
-  categoryList:any;
+  categoryList: any;
   imgToUpload!: File;
-  imgToUploadFile!: File|null;
-
+  imgToUploadFile!: File | null;
   fileRequired!: boolean;
   productObject: any;
   constructor(private productService: ProductService,
-              private fb: FormBuilder,
-              private productservice: ProductService,
-              private categoryservice: CategoryService,
-              private fileUploadService: FileUploadService
-              ) { }
+    private fb: FormBuilder,
+    private productservice: ProductService,
+    private categoryservice: CategoryService,
+    private fileUploadService: FileUploadService
+  ) { }
 
   ngOnInit(): void {
-   
+
     this.getProducts()
     this.getAllCategorys()
     this.creatwProductForm()
-    
+
   }
 
-  getProducts()
-  {
+  getProducts() {
     this.productService.GetProduct().subscribe(res => {
       this.products = res.data
     });
   }
 
-  getAllCategorys()
-  {
+  getAllCategorys() {
     this.categoryservice.GetAllCategories().subscribe(res => {
       this.categoryList = res
-     
+
     })
-    
+
   }
 
   getProductDetails(id: number) {
@@ -79,7 +76,7 @@ export class ProductComponent implements OnInit {
   }
 
   uploadProductImage(file: any) {
-  
+
     this.fileUploadService.postFile(file.target.files[0], "Images")
       .subscribe((imageResult) => {
 
@@ -102,25 +99,25 @@ export class ProductComponent implements OnInit {
 
   getProductForEdit(id: any) {
 
-      this.buttonTitle = "Update";
-      this.modalTitle = "Update product"
+    this.buttonTitle = "Update";
+    this.modalTitle = "Update product"
 
-      this.productObject = this.products.find((p:any) => p.id == id);
+    this.productObject = this.products.find((p: any) => p.id == id);
 
-      Object.entries(this.productObject).filter(([_, v]) => Array.isArray(v))
-        .map((kv) => this.createFormArrays(kv, this.productForm));
-      this.productForm.patchValue(this.productObject);
+    Object.entries(this.productObject).filter(([_, v]) => Array.isArray(v))
+      .map((kv) => this.createFormArrays(kv, this.productForm));
+    this.productForm.patchValue(this.productObject);
 
-      if (this.productObject.pictureUrl != "") {
-        this.imageName = this.productObject.pictureUrl;
-      }
+    if (this.productObject.pictureUrl != "") {
+      this.imageName = this.productObject.pictureUrl;
+    }
 
-      this.product = new Product();
-    
-    
+    this.product = new Product();
+
+
   }
 
-  createFormArrays = ([k, v]:any, form: FormGroup) => {
+  createFormArrays = ([k, v]: any, form: FormGroup) => {
     if (form.contains(k)) {
       form.controls[k] =
         new FormArray(this.createFormArray(v as []));
@@ -130,7 +127,7 @@ export class ProductComponent implements OnInit {
   createFormArray = (data: any[]) =>
     data.map(c => (
       new FormGroup(Object.entries(c)
-        .reduce((acc:any, [key, value]) => {
+        .reduce((acc: any, [key, value]) => {
           acc[key] = new FormControl(value)
           return acc;
         }, {}))
@@ -151,19 +148,16 @@ export class ProductComponent implements OnInit {
       this.product.categoryId = product.categoryId;
       this.product.quantity = product.quantity;
       this.product.value = product.value;
+      this.product.price = product.price;
       this.product.description = product.description;
       this.product.pictureUrl = this.imageName;
-
-
 
       this.productService.addProduct(this.product)
         .subscribe(() => {
 
           alert("Added successfully");
           this.closeClick();
-          // this.getProducts(1);
           this.product = new Product();
-          // this.productForm.reset();
           this.imageName = "";
           this.imageAddEdit = "../../../assets/users/NoImage.jpg";
 
@@ -178,20 +172,16 @@ export class ProductComponent implements OnInit {
       this.product.name = product.name;
       this.product.categoryId = product.categoryId;
       this.product.quantity = product.quantity;
+      this.product.price = product.price;
       this.product.value = product.value;
       this.product.description = product.description;
       this.product.pictureUrl = this.imageName;
-
       this.productService.updateProduct(this.product)
         .subscribe(() => {
-
           alert("Updated successfully");
-          // this.getProducts(1);
           this.closeClick();
           this.product = new Product();
-          // this.productForm.reset();
           this.imageAddEdit = "../../../assets/users/NoImage.jpg";
-
         });
 
     }
@@ -208,7 +198,7 @@ export class ProductComponent implements OnInit {
       value: [""],
 
     });
-  
+
   }
 
   closeClick() {

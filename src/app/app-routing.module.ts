@@ -6,13 +6,13 @@ import { MainlayoutComponent } from './Component/User/user/component/mainlayout/
 import { NotFoundComponent } from './Component/User/user/component/Shared/not-found/not-found.component';
 
 const routes: Routes = [
-      // {path: '', component:LoginComponent },
+   
       {path: 'login', component:LoginComponent },
       {path: 'admin',loadChildren: () => import('src/app/Component/Admin/component/admin/admin.module')
       .then(mod => mod.AdminModule)},
 
       {path: '', component:MainlayoutComponent, children: [
-       {path: '', component:HomeComponent },
+      {path: '', component:HomeComponent },
       {path: 'home', component:HomeComponent },
       {path: 'user',loadChildren: () => import('src/app/Component/User/user/user.module')
       .then(mod => mod.UserModule)},]},
@@ -20,9 +20,7 @@ const routes: Routes = [
       {path: 'shared',loadChildren: () => import('src/app/Component/Shared/shared/shared.module')
       .then(mod => mod.SharedModule)},
       {path: '**', component:NotFoundComponent },
-    
-
-    // {path: 'login', component:LoginComponent},
+  
 ]; 
 
 @NgModule({

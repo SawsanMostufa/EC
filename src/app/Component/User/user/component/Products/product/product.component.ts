@@ -15,74 +15,62 @@ import { ProductService } from '../../../../../Shared/shared/Services/product.se
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })
-export class ProductComponent implements OnInit , OnChanges {
-  ProductName:any
-ProductList!:Iproduct[];
- productListOfCat:Iproduct[]=[];
-ProductID:any;
-@Input()resevedcategory!:string;
-@Input() resevedSortProductByPrice:any;
-@Output() sendproduct:EventEmitter<any>=new EventEmitter();
-defaultSize:Size[]=[];
-image = environment.imagesUrl + "Images/Products/";
-defImage = "../../../../../assets/img/No_Image_Available.jpg";
-  constructor(private service:ProductService )
-   {}
+export class ProductComponent implements OnInit, OnChanges {
+  ProductName: any
+  ProductList!: Iproduct[];
+  productListOfCat: Iproduct[] = [];
+  ProductID: any;
+  @Input() resevedcategory!: string;
+  @Input() resevedSortProductByPrice: any;
+  @Output() sendproduct: EventEmitter<any> = new EventEmitter();
+  defaultSize: Size[] = [];
+  image = environment.imagesUrl + "Images/Products/";
+  defImage = "../../../../../assets/img/No_Image_Available.jpg";
+  constructor(private service: ProductService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-      
-    if( this.resevedcategory==='')
-    {
-      this.productListOfCat=this.ProductList;
+
+    if (this.resevedcategory === '') {
+      this.productListOfCat = this.ProductList;
     }
-    else{
-          this.productListOfCat=this.ProductList.filter(res=> res.category=== this.resevedcategory);
-        }
-    
-    this.productListOfCat=this.resevedSortProductByPrice;
+    else {
+      this.productListOfCat = this.ProductList.filter(res => res.category === this.resevedcategory);
+    }
+
+    this.productListOfCat = this.resevedSortProductByPrice;
   }
-   
-   
+
+
   ngOnInit(): void {
-  
-        this.getProducts();
-          this.service.filterByProductName.subscribe((res)=>{
-      this.ProductName=res
-      
-     })
+
+    this.getProducts();
+    this.service.filterByProductName.subscribe((res) => {
+      this.ProductName = res
+
+    })
   }
 
- 
-  sortPrice(){
-    this.productListOfCat=this.resevedSortProductByPrice;
+
+  sortPrice() {
+    this.productListOfCat = this.resevedSortProductByPrice;
   }
 
- 
-  getProducts()
-  {
-    this.service.GetProduct().subscribe(response =>{
+  getProducts() {
+    this.service.GetProduct().subscribe(response => {
       this.ProductList = response.data;
-      this.productListOfCat=response.data;
-  });
+      this.productListOfCat = response.data;
+    });
   }
- 
-  getPrdByID( id:number)
-  {
-    this.service.GetProductID(id).subscribe(response =>{
+
+  getPrdByID(id: number) {
+    this.service.GetProductID(id).subscribe(response => {
       this.ProductID = response.data;
-     
-  });
+
+    });
 
   }
-  addItemToBasket(obj:any){
-    debugger
-    // obj.quantity=1;
-
-   // this.defaultSize[0]=obj.productSizes[0];
-   //  obj.productSizes=this.defaultSize;
-
-   this.sendproduct.emit(obj);
-
+  addItemToBasket(obj: any) {
+    this.sendproduct.emit(obj);
   }
-  
+
 }

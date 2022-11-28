@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   returnUrl!: string;
   constructor(private fb: FormBuilder, private accountService: AccountService,
-    private router: Router, private authService:AuthService) { }
+    private router: Router, private authService: AuthService) { }
   ngOnInit() {
     this.initialData();
     this.createLoginForm();
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     if (_token != null) {
       this.router.navigate(['admin/Dashboart/category']);
     }
-   
+
   }
 
 
@@ -36,20 +36,20 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login(user:any) {
-  
+  login(user: any) {
+
     this.authService.login(user)
       .subscribe((reponse: any) => {
-        
-          localStorage.setItem('displayName', reponse.displayname);
-          localStorage.setItem('token', reponse.token);
-          alert('login success')
-          this.router.navigate(['admin/Dashboart/category']);
- 
-        })
-        
+
+        localStorage.setItem('displayName', reponse.displayname);
+        localStorage.setItem('token', reponse.token);
+        alert('login success')
+        this.router.navigate(['admin/Dashboart/category']);
+
+      })
+
   }
 
 
- 
+
 }

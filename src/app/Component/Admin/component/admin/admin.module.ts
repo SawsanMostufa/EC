@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboartComponent } from './dashboart/dashboart.component';
-import { SearchComponent } from './General/Search/search/search.component';
 import { MyprofileComponent } from './My Profile/myprofile/myprofile.component';
 import { ProductComponent } from './dashboart/product/product.component';
 import { OrderComponent } from './dashboart/order/order.component';
@@ -21,7 +20,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     UserComponent,
     CategoryComponent,
     LoginComponent,
-    SearchComponent
+    
   ],
   imports: [
     CommonModule,

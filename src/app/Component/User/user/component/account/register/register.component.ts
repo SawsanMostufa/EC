@@ -12,52 +12,51 @@ import { AbstractControl } from "@angular/forms";
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
-  zipcode:any
-  constructor( private router: Router,private fb:FormBuilder,
-               private accountService:AccountService,) { }
+  zipcode: any
+  constructor(private router: Router, private fb: FormBuilder,
+    private accountService: AccountService,) { }
 
   ngOnInit(): void {
     this.createRegisterForm();
   }
 
-  createRegisterForm(){
+  createRegisterForm() {
     this.registerForm = this.fb.group({
-      displayName:[null, Validators.required],
-      email:[null,[Validators.required, Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')]],
-      password: [null,[Validators.required]],
-      confirmPassword: [null,[Validators.required]],
-      phoneNumber: [null,[Validators.required]],
+      displayName: [null, Validators.required],
+      email: [null, [Validators.required, Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')]],
+      password: [null, [Validators.required]],
+      confirmPassword: [null, [Validators.required]],
+      phoneNumber: [null, [Validators.required]],
       address: this.fb.group({
-        firstName: [null,Validators.required],
-        lastName: [null,Validators.required],
-        street: [null,Validators.required],
-        city: [null,Validators.required],
-        state: [null,Validators.required],
-        zipCode:[null,Validators.required]
+        firstName: [null, Validators.required],
+        lastName: [null, Validators.required],
+        street: [null, Validators.required],
+        city: [null, Validators.required],
+        state: [null, Validators.required],
+        zipCode: [null, Validators.required]
       })
-      
-    } ,{validators:[this.confirmPasswordValidator]});
+
+    }, { validators: [this.confirmPasswordValidator] });
   }
- 
-  confirmPasswordValidator( control:AbstractControl)
-  {
-     const password= control.get('password');
-     const confirmpassword= control.get('confirmPassword');
-     if(password?.pristine || confirmpassword?.pristine)
-     {
+
+  confirmPasswordValidator(control: AbstractControl) {
+    const password = control.get('password');
+    const confirmpassword = control.get('confirmPassword');
+    if (password?.pristine || confirmpassword?.pristine) {
       return null;
-     }
-     else{
-     return password && confirmpassword && password.value != confirmpassword.value ? 
-     { 'misMatch' : true }: null;}
+    }
+    else {
+      return password && confirmpassword && password.value != confirmpassword.value ?
+        { 'misMatch': true } : null;
+    }
   }
-  
-  onSubmit(){
+
+  onSubmit() {
     debugger
     console.log(this.registerForm.value);
-    this.registerForm.value.address.zipCode=this.registerForm.value.address.zipCode.toString()
+    this.registerForm.value.address.zipCode = this.registerForm.value.address.zipCode.toString()
     this.accountService.register(this.registerForm.value).subscribe(() => {
-    this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/home');
       alert('register is success')
     });
   }

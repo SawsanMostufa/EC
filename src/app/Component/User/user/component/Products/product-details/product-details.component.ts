@@ -18,7 +18,7 @@ export class ProductDetailsComponent implements OnInit {
   product!: Iproduct;
   productdetails: any;
   id: any;
-  countCart!:IBasket;
+  countCart!: IBasket;
   cartItem: number = 0;
   image = environment.imagesUrl + "Images/Products/";
   basketItems!: IBasket;
@@ -30,7 +30,6 @@ export class ProductDetailsComponent implements OnInit {
   constructor(private router: Router, private productService: ProductService,
     private basketService: BasketService,
     private activateRoute: ActivatedRoute) { }
-  //  private router:Router,,private _location: Location
 
   ngOnChanges(): void {
 
@@ -48,7 +47,6 @@ export class ProductDetailsComponent implements OnInit {
 
   getProductDetails() {
     this.productService.GetProductID(this.id).subscribe(res => {
-      // debugger
       this.productdetails = res
       this.product = this.productdetails
       this.ProductObjDetails = this.productdetails;
@@ -56,7 +54,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
 
- countItemsInCart() {
+  countItemsInCart() {
 
     if ('cart' in localStorage) {
 
@@ -79,7 +77,6 @@ export class ProductDetailsComponent implements OnInit {
 
 
   checkProductQtyAva() {
-    debugger
 
     this.basketService.checkProductQtyAva(this.product, this.quantity)
       .subscribe((response: any) => {
@@ -92,17 +89,15 @@ export class ProductDetailsComponent implements OnInit {
         }
         if (response.message == "Quantity available" && response.status == true) {
           this.addItemToCart()
-          this.countItemsInCart(); 
-         
+          this.countItemsInCart();
+
         }
 
       });
 
   }
-  incrementQtyORoutStockInBasket()
-  {
-    if (this.basketItems.items[this.index].quantity + this.quantity <= this.ProductObjDetails.quantity) 
-    {
+  incrementQtyORoutStockInBasket() {
+    if (this.basketItems.items[this.index].quantity + this.quantity <= this.ProductObjDetails.quantity) {
       this.basketItems.items[this.index].quantity += this.quantity;
       localStorage.setItem('cart', JSON.stringify(this.basketItems))
       alert("Product added in your basket");
@@ -112,16 +107,13 @@ export class ProductDetailsComponent implements OnInit {
     }
   }
 
-  isItemExestInBasket()
-  {
+  isItemExestInBasket() {
     let isExist = this.basketItems.items.find(item => item.productId == this.product.id)
 
     if (isExist) {
 
       this.index = this.basketItems.items.findIndex(item => item.productId === this.product.id);
-
       this.incrementQtyORoutStockInBasket()
-
     }
     else {
       this.product.quantity = this.quantity;
@@ -133,11 +125,10 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addItemToCart() {
-    debugger
+
     this.productItem = this.basketService.mapPRoductItemToBasketItems(this.product, this.quantity)
     if ('cart' in localStorage) {
       this.basketItems = JSON.parse(localStorage.getItem('cart')!)
-
       this.isItemExestInBasket()
     }
     else {

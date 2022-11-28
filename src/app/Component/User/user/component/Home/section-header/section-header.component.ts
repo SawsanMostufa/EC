@@ -35,11 +35,12 @@ export class SectionHeaderComponent implements OnInit {
   ngOnInit(): void {
     debugger
   
-this.logout()
+
    this.accountservice.getCurrentUser().subscribe((res:any)=>{
     this.currentUser=res
    
     })
+
      this.cartItem= this.basketService.cartItemNumber() ;
     this.accountservice.getloggedStatus().subscribe(status =>{
     this.isUserLogged=status;
@@ -50,9 +51,7 @@ this.logout()
     localStorage.removeItem('token');
     this.router.navigateByUrl('/');
   }
-// logout(){
-//   this.accountservice.logout()
-// }
+
 
   filterProductName(){
     this.productservice.filterByProductName.next(this.ProductName);

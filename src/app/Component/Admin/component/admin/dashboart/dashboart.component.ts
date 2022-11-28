@@ -8,40 +8,34 @@ import { AuthService } from '../../../Services/auth.service';
   styleUrls: ['./dashboart.component.scss']
 })
 export class DashboartComponent implements OnInit {
-  currentAdmin:any
+  currentAdmin: any
   displayName: any = "";
-  constructor( private router:Router,private authservice:AuthService) {
+  constructor(private router: Router, private authservice: AuthService) {
     this.displayName = localStorage.getItem('displayName');
-   }
+  }
 
   ngOnInit(): void {
-    
-   this.authservice.getCurrentUser().subscribe((res:any)=>{
-    this.currentAdmin=res
-  
+
+    this.authservice.getCurrentUser().subscribe((res: any) => {
+      this.currentAdmin = res
+
     })
   }
   public logout() {
     let _token = localStorage.getItem('token');
     let _displayName = localStorage.getItem('displayName');
 
+    if (_token && _displayName) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('displayName');
+      this.router.navigate(['/login']);
+    }
+    else {
+      localStorage.removeItem('token');
+      localStorage.removeItem('displayName');
+      localStorage.removeItem('userData');
+      this.router.navigate(['/login']);
+    }
 
-              
-      if (_token && _displayName) {
-        localStorage.removeItem('token');
-        localStorage.removeItem('displayName');
-        this.router.navigate(['/login']);
-       
-      }
-      else{
-        localStorage.removeItem('token');
-        localStorage.removeItem('displayName');
-        localStorage.removeItem('userData'); 
-
-        this.router.navigate(['/admin/login']);
-        // this.spinner.hide();
-        // return !this.jwtHelpler.isTokenExpired(_token);
-      }
-   
   }
 }

@@ -8,7 +8,5 @@ export interface SearchModel
   
 export class CommonSearchModel
 {
-  // public pageNo: number=0;
-  // public pageSize: number=0;
   public searchText: string = "";
 } 

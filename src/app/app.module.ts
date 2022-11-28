@@ -36,9 +36,6 @@ import { UserModule } from './Component/User/user/user.module';
    Ng2SearchPipeModule,
    NgxPaginationModule
    
-
-  //  NgModel
- 
   ],
   providers: [
     AccountService , 

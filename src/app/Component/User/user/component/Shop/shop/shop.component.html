@@ -58,21 +58,12 @@
             </div>
 
             <!-- products -->
-    
-            <app-product
-             [resevedcategory]="categoryName" 
-             [resevedSortProductByPrice]="ProductList"
-             (sendproduct)="addtocart($event)">
+
+            <app-product [resevedcategory]="categoryName" [resevedSortProductByPrice]="ProductList"
+                (sendproduct)="addtocart($event)">
             </app-product>
 
-            <!-- spinner -->
-            <!-- <app-spinner></app-spinner> -->
-            <!-- <app-pager
-                [pageSize]="shopParams.pageSize"
-                [pageNumber]="shopParams.pageNumber"
-                [totalCount]="totalCount"
-                (pageChanged)="onPageChange($event)">
-              </app-pager> -->
+
 
             <!-- pagenation -->
             <app-pager></app-pager>

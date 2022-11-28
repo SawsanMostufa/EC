@@ -1,107 +1,68 @@
-
-    <!-- Open Content -->
-    <section class="bg-light">
-        <div class="container pb-5">
-            <div class="row">
-                <div class="col-lg-5 mt-5">
-                    <div class="card mb-3">
-                        <img class="card-img img-fluid" src="{{image + product.pictureUrl}}" alt="Card image cap" id="product.name">
-                    </div>
-                    <div class="row">
-                      
-                       
-                    </div>
+<!-- Open Content -->
+<section class="bg-light">
+    <div class="container pb-5">
+        <div class="row">
+            <div class="col-lg-5 mt-5">
+                <div class="card mb-3">
+                    <img class="card-img img-fluid" src="{{image + product.pictureUrl}}" alt="Card image cap"
+                        id="product.name">
                 </div>
-                <!-- col end -->
-                <div class="col-lg-7 mt-5">
-                    <div class="card">
-                        <div class="card-body">
-                            <h1 class="h2">{{product.name}}</h1>
-                            <p class="h3 py-2"></p>
-                          
-                            <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <h6>Category Name:{{product.category}}:</h6>
-                                </li>
-                               
-                            </ul>
+                <div class="row">
+                </div>
+            </div>
+            <!-- col end -->
+            <div class="col-lg-7 mt-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="h2">{{product.name}}</h1>
+                        <p class="h3 py-2"></p>
 
-                        
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <h6>Category Name:{{product.category}}:</h6>
+                            </li>
+                        </ul>
+                        <h6>Description:</h6>
+                        <p> {{product.description}}.</p>
 
-                           <h6>Description:</h6> 
-                            <p> {{product.description}}.</p>
+                        <h6>Price:</h6>
+                        <p> {{product.price | currency}}.</p>
 
-                            <h6>Price:</h6> 
-                            <p> {{product.price | currency}}.</p>
-
-                                <div class="col-auto" >
-
-                                    <h6>Quantity:</h6> 
-                                   
-
-                                   
-                                </div>
-                                <div class="d-flex justify-content-start align-items-center">
-                                    <i (click)="decrementQuantity()" class="fa fa-minus-circle text-warning mr-2" style="cursor: pointer;font-size: 2em;"></i>
-                                    <!-- (click)="decrementQuantity()" -->
-                                    <span class="font-weight-bold" style="font-size: 1.5em;">{{quantity}}</span>
-                                    <i  (click)="incrementQuantity()"  class="fa fa-plus-circle text-warning mx-2" style="cursor: pointer;font-size: 2em;"></i>
-                                    <!-- (click)="incrementQuantity()" -->
-                                    
-                                   
-                                </div>
-
-                               <!-- </div> -->
-                               <!-- <p class="mb-2" *ngIf="defaultprice==1">Price Before Discount : {{price | currency}} </p>
-                                <p class="mb-2" *ngIf="defaultprice==1">Price After Discount: {{discount | currency}} </p> -->
-                           
-                               
-                            <form action="" method="GET">
-                                <input type="hidden" name="product-title" value="Activewear">
-                                <div class="row">
-                                    <div class="col-auto">
-
-                                        <div style="width: 50px; margin-bottom: 25px; display: flex;">
-                                            <label style="padding: 5px;">Size</label>
-                                         
-                                       <select >
-                                        <!-- (change)="onChange($event)"  -->
-                                          
-                                                <option>{{product.value}}</option>
-                                                           
-                                         </select> 
-                                        </div>
-                              
-                                    </div>
-                                    <!-- <div class="col-auto" >
-                                        <label style="padding: 5px;">quantity </label> 
-                                     
-                                        <ul class="list-inline pb-3">
-                                            <li class="list-inline-item"><span class="btn btn-success" id="btn-minus" (click)="minsAmount(i)">-</span></li> 
-                                            <input type="number" name="product-quanity" id="product-quanity" min="1" [(ngModel)]="quantitySize">
-                                            <li class="list-inline-item"><span class="btn btn-success" id="btn-plus" (click)="addAmount(i)">+</span></li> 
-                                        </ul>
-                                       
-                                    </div> -->
-                                </div>
-                                <div class="row pb-3">
-                                    <!-- <div class="col d-grid">
-                                        <button type="submit" class="btn btn-success btn-lg" name="submit" value="buy">Buy</button>
-                                    </div> -->
-                                    <div class="col-6 d-grid">
-                                        <button type="submit" class="btn btn-success btn-lg" name="submit" value="addtocard"(click)="checkProductQtyAva()" >Add To Cart</button>
-                                    </div>
-                                </div>
-                            </form>
+                        <div class="col-auto">
+                            <h6>Quantity:</h6>
+                        </div>
+                        <div class="d-flex justify-content-start align-items-center">
+                            <i (click)="decrementQuantity()" class="fa fa-minus-circle text-warning mr-2"
+                                style="cursor: pointer;font-size: 2em;"></i>
+                            <span class="font-weight-bold" style="font-size: 1.5em;">{{quantity}}</span>
+                            <i (click)="incrementQuantity()" class="fa fa-plus-circle text-warning mx-2"
+                                style="cursor: pointer;font-size: 2em;"></i>
 
                         </div>
+                        <form action="" method="GET">
+                            <input type="hidden" name="product-title" value="Activewear">
+                            <div class="row">
+                                <div class="col-auto">
+
+                                    <div style="width: 50px; margin-bottom: 25px; display: flex;">
+                                        <label style="padding: 5px;">Size</label>
+                                        <select>
+                                            <option>{{product.value}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row pb-3">
+                                <div class="col-6 d-grid">
+                                    <button type="submit" class="btn btn-success btn-lg" name="submit" value="addtocard"
+                                        (click)="checkProductQtyAva()">Add To Cart</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Close Content -->
-
-  
-           
-           
+    </div>
+</section>
+<!-- Close Content -->

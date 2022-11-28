@@ -32,7 +32,7 @@ export class ShopComponent implements OnInit {
   countCart!: IBasket
   cartItem: number = 0;
   shopParams: ShopParams | undefined;
-  
+
   constructor(private categoryservice: CategoryService,
     //  private shopService: ShopService,
     private productservice: ProductService,
@@ -57,19 +57,6 @@ export class ShopComponent implements OnInit {
 
   }
   sortProductByPrice(option: any) {
-    debugger
-    // this.productservice.GetProduct().subscribe(response => {
-    //   this.ProductList = response.data
-    //   this.ProductObj = this.ProductList;
-
-    //   if (option.value == 'priceAsc') {
-    //     this.ProductList.sort((a, b) => Number(a.price) - Number(b.price))
-    //   }
-    //   else if (option.value == 'priceDesc') {
-    //     this.ProductList.sort((a, b) => Number(b.price) - Number(a.price))
-    //   }
-    // });
-
   }
   countItemsInCart() {
 
@@ -82,7 +69,7 @@ export class ShopComponent implements OnInit {
   }
 
   addtocart(event: any) {
-    debugger
+
     this.basketList = this.basketService.mapPRoductItemToBasketItems(event, 1)
 
     if ('cart' in localStorage) {

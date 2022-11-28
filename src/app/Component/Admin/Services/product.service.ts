@@ -12,8 +12,6 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  
-
   deleteProduct(id: any): any {
     return this.http.delete(this.url + 'deleteProduct/' + id);
   }

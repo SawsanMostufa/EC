@@ -57,7 +57,6 @@ const routes: Routes = [
     CartComponent,
     ContactUsComponent,
     CheckSuccesComponent,
-    // CheckSuccesComponent,
     NavBarComponent,
     HomeComponent,
     FooterComponent,
@@ -73,7 +72,6 @@ const routes: Routes = [
   
     CommonModule,
     FormsModule,
-    // HttpClientModule,
     ReactiveFormsModule,
     Ng2SearchPipeModule,
    RouterModule.forChild(routes)

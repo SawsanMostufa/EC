@@ -17,8 +17,8 @@ export class CartComponent implements OnInit {
   product!: Iproduct;
   ProductID: any
   basketItems!: IBasket;
-  countCart!:IBasket
-  cartItem:number=0;
+  countCart!: IBasket
+  cartItem: number = 0;
   @Output() onTotalPriceChange: EventEmitter<number>
   constructor(private basketService: BasketService, private productService: ProductService) {
     this.onTotalPriceChange = new EventEmitter<number>();
@@ -55,7 +55,7 @@ export class CartComponent implements OnInit {
   }
 
   removeBasketItem(index: number) {
-    debugger
+
     this.basketItems.items.splice(index, 1);
     this.basketTotalPrice();
     localStorage.setItem('cart', JSON.stringify(this.basketItems))
@@ -80,7 +80,7 @@ export class CartComponent implements OnInit {
   }
 
   incrementQuantity(index: number) {
-    debugger
+
     this.checkProductQtyAva(index)
   }
 
@@ -89,8 +89,6 @@ export class CartComponent implements OnInit {
   }
 
   checkProductQtyAva(index: number) {
-    // debugger
-
     this.productService.GetProductID(this.basketItems.items[index].productId)
       .subscribe(res => {
         this.ProductID = res

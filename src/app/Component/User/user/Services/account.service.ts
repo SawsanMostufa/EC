@@ -11,71 +11,46 @@ import { Login } from '../Models/login';
   providedIn: 'root'
 })
 export class AccountService {
-  private isLoggedSubject:BehaviorSubject<boolean>;
+  private isLoggedSubject: BehaviorSubject<boolean>;
   baseUrl = environment.baseUrl;
-  // private currenUserSource = new ReplaySubject<IUser>(1);
-  // currentUser$ = this.currenUserSource.asObservable();
-  constructor(private http: HttpClient,private router: Router) { 
-    this.isLoggedSubject=new BehaviorSubject<boolean>(this.isUserLogged);
+  constructor(private http: HttpClient, private router: Router) {
+    this.isLoggedSubject = new BehaviorSubject<boolean>(this.isUserLogged);
   }
 
-  // loadCurrenyUser(token: string){
-  //   debugger
-  //   if(token === null){
-  //     this.currenUserSource.next(undefined);
-  //     return undefined;
-  //   }
-  //   debugger
-  //   return this.http.get(this.baseUrl + 'account/getCurrentUser')
-  //   .pipe(
-  //     map((user: any) => {
-  //       console.log(user)
-  //       if(user){
-  //         localStorage.setItem("token",user.token);
-  //         this.currenUserSource.next(user);
-  //       }
-  //     })
-  //   );
- // }
+  getCurrentUser() {
 
-  getCurrentUser()
-   {
-    debugger
     return this.http.get(this.baseUrl + 'account/getCurrentUser')
-   } 
+  }
 
-  logout(){
+  logout() {
     localStorage.removeItem('token');
     this.router.navigateByUrl('/');
   }
- 
-  checkEmailExsist(email: string){
-    return this.http.get(this.baseUrl + 'account/emailExsist?email='+ email);
+
+  checkEmailExsist(email: string) {
+    return this.http.get(this.baseUrl + 'account/emailExsist?email=' + email);
   }
 
-  login(user: any){
-    debugger
+  login(user: any) {
+
     return this.http.post(this.baseUrl + 'account/login', user)
-   
+
   }
 
-  register(user: any){
-    debugger
+  register(user: any) {
+
     return this.http.post(this.baseUrl + 'account/register', user)
-      
+
   }
 
-  gettoken()
-  {
+  gettoken() {
     return localStorage.getItem('token');
- 
+
   }
-  get isUserLogged():boolean
-  {
-    return localStorage.getItem('token')?true : false;
+  get isUserLogged(): boolean {
+    return localStorage.getItem('token') ? true : false;
   }
-  getloggedStatus():Observable<boolean>
-  {
+  getloggedStatus(): Observable<boolean> {
     return this.isLoggedSubject.asObservable();
   }
 }
