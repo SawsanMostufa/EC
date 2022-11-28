@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators,FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Login } from '../../../Models/login';
 import { AccountService } from '../../../Services/account.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +13,10 @@ import { AccountService } from '../../../Services/account.service';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   returnUrl!:string;
-  constructor( private fb:FormBuilder, private accountService:AccountService,
-                private router: Router) { }
+  constructor( private fb:FormBuilder, 
+               private accountService:AccountService,
+               private router: Router,
+               private toaster: ToastrService) { }
 
   ngOnInit(): void {
    this.createLoginForm()
@@ -36,9 +39,9 @@ export class LoginComponent implements OnInit {
       (res:any) => {
         localStorage.setItem("token",res.token);
         alert('login is success')
-        
+         
       this.router.navigateByUrl(this.returnUrl)
-     
+      // this.toaster.success("login is success");
       });
     
 }

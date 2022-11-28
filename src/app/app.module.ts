@@ -15,11 +15,11 @@ import { LoadingInterceptor } from './Component/Shared/shared/Interseptor/loadin
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { UserModule } from './Component/User/user/user.module';
-
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
-  
+   
     
   ],
   imports: [
@@ -34,8 +34,8 @@ import { UserModule } from './Component/User/user/user.module';
    CommonModule,
    ReactiveFormsModule,
    Ng2SearchPipeModule,
-   NgxPaginationModule
-   
+   NgxPaginationModule,
+   ToastrModule
   ],
   providers: [
     AccountService , 

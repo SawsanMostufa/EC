@@ -8,7 +8,7 @@ import { ProductService } from 'src/app/Component/Shared/shared/Services/product
 import { environment } from 'src/environments/environment';
 import { Basket, BasketLis, IBasket } from 'src/app/Component/User/user/Models/basket';
 import { Size } from 'src/app/Component/User/user/Models/size';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -29,7 +29,8 @@ export class ProductDetailsComponent implements OnInit {
   productItem!: Basket;
   constructor(private router: Router, private productService: ProductService,
     private basketService: BasketService,
-    private activateRoute: ActivatedRoute) { }
+    private activateRoute: ActivatedRoute,
+    private toaster: ToastrService) { }
 
   ngOnChanges(): void {
 
@@ -83,6 +84,7 @@ export class ProductDetailsComponent implements OnInit {
 
         if (response.message == "Quantity not available in stock" && response.status == false) {
           alert("Quantity not available in stock");
+          
         }
         if (response.message == "Quantity request greater than in stock" && response.status == false) {
           alert("Quantity request greater than in stock");
@@ -100,10 +102,12 @@ export class ProductDetailsComponent implements OnInit {
     if (this.basketItems.items[this.index].quantity + this.quantity <= this.ProductObjDetails.quantity) {
       this.basketItems.items[this.index].quantity += this.quantity;
       localStorage.setItem('cart', JSON.stringify(this.basketItems))
-      alert("Product added in your basket");
+      // alert("Product added in your basket");
+      this.toaster.success("Product added in your basket");
     }
     else {
-      alert("Quantity request greater than in stock");
+      // alert("Quantity request greater than in stock");
+      this.toaster.error("Quantity request greater than in stock");
     }
   }
 
@@ -119,7 +123,8 @@ export class ProductDetailsComponent implements OnInit {
       this.product.quantity = this.quantity;
       this.basketItems.items.push(this.productItem)
       localStorage.setItem('cart', JSON.stringify(this.basketItems))
-      alert("Product added in your basket");
+      // alert("Product added in your basket");
+      this.toaster.success("Product added in your basket");
     }
 
   }
@@ -137,7 +142,8 @@ export class ProductDetailsComponent implements OnInit {
       this.basketItems.items.push(this.productItem)
 
       localStorage.setItem('cart', JSON.stringify(this.basketItems))
-      alert("Product added in your basket");
+      this.toaster.success("Product added in your basket");
+      // alert("Product added in your basket");
       this.basketService.cartSubject.next(this.cartItem);
 
     }
