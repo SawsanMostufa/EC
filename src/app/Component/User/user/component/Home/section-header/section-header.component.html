@@ -59,12 +59,8 @@
                         <i class="fa fa-fw fa-user text-dark mr-3"> </i>
                         <div class="dropdown-content">
                           <a routerLink="user/register">Register</a>
-                          <a  routerLink="user/login">Login</a>
-                          <a routerLink="admin/Dashboart">My Profile</a>
-                          <!-- <a routerLink="admin/login">login admin</a>
-                          <a routerLink="admin/Dashboart/addproduct">products</a>
-                          <a routerLink="admin/Dashboart/order">order</a> -->
-
+                          <a  routerLink="user/loginUser">Login</a>
+                          <a  (click)="logout()">Logout</a>
                         </div>
                       </div>
                     <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">{{currentUser?.displayname}}</span>

@@ -8,6 +8,7 @@ import { AccountService } from '../../../Services/account.service';
 import { IBasket } from '../../../Models/basket';
 import { Login } from '../../../Models/login';
 import { IUser } from 'src/app/Component/User/user/Models/user';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-section-header',
   templateUrl: './section-header.component.html',
@@ -20,7 +21,10 @@ export class SectionHeaderComponent implements OnInit {
    isUserLogged:boolean=false;
   currentUser!:IUser;
   ProductName:any
-  constructor(private basketService:BasketService, private productservice:ProductService,private accountservice:AccountService) { 
+  constructor(private basketService:BasketService, 
+    private productservice:ProductService,
+    private accountservice:AccountService,
+    private router: Router) { 
     debugger
     this.basketService.cartSubject.subscribe((data)=>{
       this.cartItem=data;
@@ -31,7 +35,7 @@ export class SectionHeaderComponent implements OnInit {
   ngOnInit(): void {
     debugger
   
-
+this.logout()
    this.accountservice.getCurrentUser().subscribe((res:any)=>{
     this.currentUser=res
    
@@ -42,6 +46,14 @@ export class SectionHeaderComponent implements OnInit {
     })
    
   }
+  logout(){
+    localStorage.removeItem('token');
+    this.router.navigateByUrl('/');
+  }
+// logout(){
+//   this.accountservice.logout()
+// }
+
   filterProductName(){
     this.productservice.filterByProductName.next(this.ProductName);
  

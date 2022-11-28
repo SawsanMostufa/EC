@@ -59,20 +59,17 @@
                         <input type="text" hidden class="form-control" id="id" name="id">
                         <div class="form-group">
 
-                            <!-- <div class="row">
-                                <div class="col-lg-12 col-md-12 form-group">
-                                    <label for="Name" class=" mb-1">Product Name</label>
-                                    <input type="text" class="form-control" id="name" formControlName="name"
-                                        placeholder="Enter Name">
-                                </div>
-                            </div> -->
-
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 form-group" >
                                     <label class="control-label">Product name</label>
                                     &nbsp;<span style="color:red;font-weight: bold">*</span>
                                     <input class="form-control input-sm" formControlName="name" type="text"
-                                    placeholder="Product name">
+                                    placeholder="Product name" [class.is-invalid]="productForm.get('name')?.invalid &&
+                                    productForm.get('name')?.touched">
+
+                                    <small class="text-danger"
+                                    [class.d-none]="productForm.get('name')?.valid || productForm.get('name')?.untouched"> Name
+                                    is required </small>
         
                                     
                                 </div>
@@ -81,21 +78,24 @@
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 form-group">
                                     <label class="control-label" for="categoryId">Category</label>
-                                    <select formControlName="categoryId" placeholder="--- Select category ---">
+                                    <select formControlName="categoryId" placeholder="--- Select category ---"        >
                                         <option *ngFor="let cat of categoryList" [value]="cat.id">
                                             <span>{{cat.name}}</span>
                                         </option>
                                     </select>
                                    
                                 </div>
-        
                             </div>
 
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 form-group">
                                     <label for="price" class=" mb-1">price</label>
                                     <input type="number" class="form-control" id="name" formControlName="price"
-                                        placeholder="Enter price">
+                                        placeholder="Enter price" [class.is-invalid]="productForm.get('price')?.invalid &&
+                                        productForm.get('price')?.touched">
+                                        <small class="text-danger"
+                                    [class.d-none]="productForm.get('price')?.valid || productForm.get('price')?.untouched"> Name
+                                    is required </small>
                                 </div>
                             </div>
 
@@ -103,7 +103,12 @@
                                 <div class="col-lg-12 col-md-12 form-group">
                                     <label for="price" class=" mb-1">Quantity</label>
                                     <input type="number" class="form-control" id="name" formControlName="quantity"
-                                        placeholder="Enter Quantity">
+                                        placeholder="Enter Quantity"
+                                        [class.is-invalid]="productForm.get('quantity')?.invalid &&
+                                        productForm.get('quantity')?.touched">
+                                        <small class="text-danger"
+                                    [class.d-none]="productForm.get('quantity')?.valid || productForm.get('quantity')?.untouched"> Name
+                                    is required </small>
                                 </div>
                             </div>
 
@@ -111,7 +116,12 @@
                                 <div class="col-lg-12 col-md-12 form-group">
                                     <label for="price" class=" mb-1">Size</label>
                                     <input type="text" class="form-control" id="name" formControlName="value"
-                                        placeholder="Enter Size">
+                                        placeholder="Enter Size"
+                                        [class.is-invalid]="productForm.get('value')?.invalid &&
+                                        productForm.get('value')?.touched">
+                                        <small class="text-danger"
+                                    [class.d-none]="productForm.get('value')?.valid || productForm.get('value')?.untouched"> Name
+                                    is required </small>
                                 </div>
                             </div>
 
@@ -120,7 +130,15 @@
                                 <div class="col-lg-12 col-md-12 form-group">
                                     <label class="control-label">Description</label>
                                     <textarea class="form-control" formControlName="description"
-                                        placeholder="Description"></textarea>
+                                        placeholder="Description" 
+                                        ></textarea>
+                                        <!-- class.is-invalid]="productForm.get('description')?.invalid &&
+                                        productForm.get('description')?.touched" -->
+                                    <!-- <small class="text-danger"
+                                        [class.d-none]="productForm.get('description')?.valid || productForm.get('description')?.untouched"> 
+                                        Name is required
+                                     </small> -->
+                                      
                                 </div>
                             </div>
                             <!-- image -->
@@ -138,7 +156,11 @@
 
 
                         </div>
-                        <button type="submit">save</button>
+                       <br>
+                              <button class="btn btn-block btn-radius m-b-5 bg-success" type="submit" style=" color: white;">
+                               Save
+                              </button>
+                        <!-- <button type="submit" class="bg-success text-white ">save</button> -->
                     </form>
                    
                 </div>

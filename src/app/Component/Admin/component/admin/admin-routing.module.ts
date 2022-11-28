@@ -22,15 +22,13 @@ const routes: Routes = [
             {path: 'userview', component:UserComponent },
             {path: 'addproduct', component:ProductComponent },
             {path: 'myprofileadmin', component:MyprofileComponent },
-            // {path: 'Dashboart', component:DashboartComponent },
-
-      ]
+        ]
     },     
-    {path: 'login', component:LoginComponent},
-    // {path: '', component:CategoryComponent},
-    // {path: '**', component:CategoryComponent}
+        {path: '', component:CategoryComponent},
+        {path: '**', component:CategoryComponent},
+        // {path: '', component:CategoryComponent},
   ];
-//   admin/Dashboart/order
+
 
 
 @NgModule({

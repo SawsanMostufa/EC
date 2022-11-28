@@ -14,4 +14,12 @@ export class AuthService {
   login(user: IUser) {
     return this.http.post(this.baseUrl + 'adminLogin', user);
 }
+
+getCurrentUser()
+{
+ return this.http.get(this.baseUrl + 'getCurrentUser')
+} 
+checkEmailExsist(email: string){
+  return this.http.get(this.baseUrl + 'emailExsist?email='+ email);
+}
 }

@@ -26,9 +26,9 @@ import { SliderComponent } from './component/Home/slider/slider.component';
 import { FeaturedProductComponent } from './component/Products/featured-product/featured-product.component';
 import { CategoryComponent } from './component/Categorys/category/category.component';
 import { CheckSuccesComponent } from './component/check-succes/check-succes.component';
+import { MainlayoutComponent } from './component/mainlayout/mainlayout.component';
 const routes: Routes = [
- 
-  {path: 'userrofile', component:UserprofileComponent},
+  
   {path: 'basket', component:BasketComponent},
   {path: 'CheckSuccesComponent', component:CheckSuccesComponent,canActivate:[AuthGuard]},
   {path: 'productdetails/:id', component:ProductDetailsComponent},
@@ -36,9 +36,10 @@ const routes: Routes = [
   {path:  'contactUs', component:ContactUsComponent},
   {path:  'order-list', component:OrderListComponent},
   {path:  'shop', component:ShopComponent},
-  {path:  'login', component:LoginComponent},
+  {path:  'loginUser', component:LoginComponent},
   {path:  'register', component:RegisterComponent},
-
+  {path:  'home', component:HomeComponent},
+  
 ];
 
 
@@ -65,7 +66,8 @@ const routes: Routes = [
     ProductComponent,
     SliderComponent,
     FeaturedProductComponent,
-    CategoryComponent
+    CategoryComponent,
+    MainlayoutComponent
   ],
   imports: [
   

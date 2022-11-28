@@ -46,7 +46,6 @@ export class AccountService {
 
   logout(){
     localStorage.removeItem('token');
-    // this.currenUserSource.next(null);
     this.router.navigateByUrl('/');
   }
  

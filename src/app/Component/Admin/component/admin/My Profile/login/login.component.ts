@@ -43,10 +43,11 @@ export class LoginComponent implements OnInit {
         
           localStorage.setItem('displayName', reponse.displayname);
           localStorage.setItem('token', reponse.token);
+          alert('login success')
           this.router.navigate(['admin/Dashboart/category']);
  
-        });
-      
+        })
+        
   }
 
 
